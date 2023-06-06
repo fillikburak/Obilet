@@ -1,0 +1,40 @@
+
+body.dark-mode {
+    background-color: #222;
+    color: #fff;
+}
+
+.dark-mode-toggle {
+    text-align: right;
+}
+
+h1, h2, h3 {
+    color: #fff;
+}
+
+a {
+    color: #fff;
+}
+
+    a:hover {
+        color: #ccc;
+    }
+
+.button {
+    background-color: #333;
+    color: #fff;
+}
+
+    .button:hover {
+        background-color: #555;
+    }
+
+.form-control {
+    background-color: #333;
+    color: #212529;
+}
+
+.bootstrap-select:not([class*=col-]):not([class*=form-control]):not(.input-group-btn) {
+    width: 100% !important;
+    max-width: 410px;
+}

@@ -1,0 +1,35 @@
+﻿@model Obilet.Common.Models.Journey.JourneyViewModel
+
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-4">
+            <div class="list-group">
+                <button type="button" onclick="goBack()">Geri Git</button>
+                <a href="#" class="list-group-item list-group-item-action active mb-1" aria-current="true">
+                    <div class="d-flex w-100 justify-content-between">
+                        <h5 class="mb-1">@Model.OriginLocation -> @Model.DestinationLocation</h5>
+                    </div>
+                    <small>@Model.DepartureDate</small>
+                </a>
+                @foreach (var item in Model.Journeys)
+                {
+                    <a href="#" class="list-group-item list-group-item-action active mb-1" aria-current="true">
+                        <div class="d-flex w-100 justify-content-between">
+                            <h5 class="mb-1"> Kalkış @item.Journey.DepartureTime -> Varış @item.Journey.ArrivalTime</h5>
+                            <small>@item.Journey.InternetPrice @item.Journey.Currency</small>
+                        </div>
+                        <p class="mb-1">&nbsp;</p>
+                        <small>@item.Journey.Origin - @item.Journey.Destination</small>
+                    </a>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+@section Scripts{
+    <script>
+        function goBack() {
+            window.history.back();
+        }
+    </script>
+}
