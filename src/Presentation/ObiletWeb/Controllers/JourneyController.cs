@@ -31,10 +31,11 @@ public class JourneyController : Controller
         {
             Data = new DataRequestModel
             {
-                DepartureDate = requestModel.DepartureDate,
+                DepartureDate = Convert.ToDateTime(requestModel.DepartureDate).ToString("yyyy-MM-dd"),
                 DestinationId = requestModel.DestinationId,
                 OriginId = requestModel.OriginId
             },
+            Date = DateTime.Now.ToString("yyyy-MM-dd"),
             DeviceSession = new DeviceSession
             {
                 SessionId = context?.HttpContext?.Request.Cookies["SessionId"].ToString(),

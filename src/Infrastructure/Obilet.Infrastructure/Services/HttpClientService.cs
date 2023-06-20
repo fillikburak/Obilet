@@ -1,5 +1,6 @@
 ﻿
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
 using Obilet.Common;
 using Obilet.Infrastructure.Interfaces;
@@ -12,12 +13,14 @@ public class HttpClientService : IHttpClientService
     private readonly HttpClient httpClient;
     private readonly IServiceResponseHelper serviceResponse;
     private readonly IConfiguration configuration;
+    private readonly ILogger<HttpClientService> logger;
 
-    public HttpClientService(HttpClient httpClient, IServiceResponseHelper serviceResponse, IConfiguration configuration)
+    public HttpClientService(HttpClient httpClient, IServiceResponseHelper serviceResponse, IConfiguration configuration, ILogger<HttpClientService> logger)
     {
         this.httpClient = httpClient;
         this.serviceResponse = serviceResponse;
         this.configuration = configuration;
+        this.logger = logger;
     }
 
     public async Task<ServiceResponse<T>> PostApiRequestAsync<T>(string url, object? body = null, bool addAuthorization = true, bool isLogging = true)
@@ -31,6 +34,9 @@ public class HttpClientService : IHttpClientService
 
         if (body != null)
         {
+            logger.LogInformation("Post Api Request Body Start");
+            logger.LogInformation(JsonConvert.SerializeObject(body));
+            logger.LogInformation("Post Api Request Body End");
             request.Content = new StringContent(JsonConvert.SerializeObject(body), Encoding.UTF8, "application/json");
         }
 
